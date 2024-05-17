@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, json
 import os
 import database.db_connector as db
 
@@ -16,7 +16,10 @@ def root():
 
 @app.route('/Species')
 def Species():
-    return "This is the Species route."
+    query = "SELECT * FROM Species;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template("garden.j2", Species=results)
 
 # Listener
 
