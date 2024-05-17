@@ -4,10 +4,7 @@
 # the following will be used by the webapp.py to interact with the database
 # You can also use environment variables
 
-host = 'classmysql.engr.oregonstate.edu'
-user = 'cs340_bremnere'                                   # can be different if you set up another username in your MySQL installation
-passwd = '2295'                        # set accordingly
-db = 'cs340_bremnere'
+
 
 
 # For OSU Flip Servers
