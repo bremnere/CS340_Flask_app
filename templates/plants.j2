@@ -1,0 +1,266 @@
+<!--
+1      # Citation # 1 for the following code (navigation bar HTML and CSS styling):
+2      # Date: 05/02/2024
+3      # Code was adapted from GreatStack - How To Make Website Using HTML And CSS | Website Design With HTML And CSS:
+4      # Source URL: https://www.youtube.com/watch?v=PgAZ8KzfhO8
+
+1      # Citation # 2 for the following code (css styling for navigation):
+2      # Date: 05/02/2024
+3      # Code was adapted from the W3 CSS:
+4      # Source URL: https://www.w3schools.com/html/html_css.asp
+
+1      # Citation # 3 for the following code (table formation for plants and form creation for adding plants):
+2      # Date: 05/02/2024
+3      # Code was adapted from the Exploration - Web Application Technology (Professor Curry - Walkthrough Video # 1):
+4      # Source URL: https://canvas.oregonstate.edu/courses/1958399/pages/exploration-web-application-technology?module_item_id=24181847
+
+1      # Citation # 4 for the following code (plant adding form):
+2      # Date: 05/02/2024
+3      # Code was adapted from W3 School for HTML Forms/input types:
+4      # Source URL: https://www.w3schools.com/html/html_forms.asp
+
+1      # Citation # 5  for the following code (General CSS):
+2      # Date: 05/04/2024
+3      # Code was adapted from W3 School for general CSS:
+4      # Source URL: https://www.w3schools.com/w3css/defaulT.asp
+
+1      # Citation # 6: for the following code (STEP 6 - APPLYING QUERIES TO APP TO DISPLAY DATA):
+2      # Date: 05/19/2024
+3      # Code was adapted from Flask Starter Code: OSU bsg-ppl example (Step 6):
+4      # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app/tree/master
+
+1      # Citation # 7: for the following code (Jinja 2 templates - Expressions/Loops):
+2      # Date: 05/19/2024
+3      # Code was adapted from Flask Starter Code: OSU bsg-ppl example (Step 6):
+4      # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app/tree/master
+-->
+
+ <!-- CSS styling combination of GreatStack Youtube/W3 School for CSS (CITATION 1/5) --> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backyard Blooms</title>
+    <style>
+        nav li {
+            list-style: none;
+            display: inline-block;
+            background-color: rgb(160, 245, 216);
+            border-radius: 5px;
+            padding: 5px;
+            margin: 7px;
+            }
+
+        nav li a{
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 100px;
+            padding: 10px;
+            font-size: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        nav li a:hover{
+            background: none;
+            color: green;
+        }
+
+        nav H1{
+            color: rgb(9, 89, 143);
+            font-weight: bold;
+            font-size: 30px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        body {
+            background-color: rgb(237, 177, 177);
+        }
+
+        th {
+            padding: 7px;
+            border-radius: 5px;
+            margin-bottom: 50px;
+            background-color: lightblue;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        td {
+            padding: 8px;
+            border-radius: 10px;
+            border: 5px;
+            margin-bottom: 50px;
+            background-color: lavender;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        table {
+            margin-top: 100px;
+            
+        }
+        form{
+            margin-top: 80px;
+            font-size: 22px;
+            padding: 10px;
+            max-width: 600px;
+            margin: 20px;
+            background-color: rgb(193, 242, 193);
+            border-radius: 20px;
+            border: 3px solid black;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        fieldset{
+            border: 3px solid black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        legend {
+            font-weight: bold;
+            font-size: 25px;
+        }
+        input{
+            display: block;
+        }
+        select {
+            display: block;
+            width: 100px;
+        }
+    </style>
+
+<!-- Navigation Bar for subsequent pages (see citation 1/2) --> 
+
+</head>
+<body>
+    <nav>
+        <H1>Backyard Blooms</H1>
+        <p><strong>View/Add/Update/Delete Plants in Backyard Blooms</strong></p>
+        <ul>
+            <li><a href="home">Home</a></li>  
+            <li><a href="plants">Plants</a></li> 
+            <li><a href="species">Species</a></li> 
+            <li><a href="harvests">Harvests</a></li> 
+            <li><a href="gardenbeds">Garden Beds</a></li> 
+            <li><a href="amendments">Amendments</a></li> 
+            <li><a href="gardenbedamendments">Garden Bed Amendments</a></li> 
+        </ul>
+    </nav>
+
+ <!-- Citation # 6 - FLASK STARTER CODE - APPLYING QUERIES TO APP -->
+ <!-- Citation # 7 - Jinja 2 templates -->
+
+<table>
+    <thead>
+    <tr>
+        <!-- Header Column Names -->
+        {% for key in Plants[0].keys() %}
+
+        <!-- Header Rows -->
+        <th>{{ key }}</th>
+
+        <!-- End of this for loop -->
+        {% endfor %}
+    </tr>
+    <tbody>
+
+    <!-- Now go through every plant in Plants -->
+    {% for plant in Plants %}
+    <tr>
+        <!-- Then iterate through every key in the current plant dictionary -->
+        {% for key in plant.keys() %}
+
+        <!-- Create element with plant-->
+        <td>{{plant[key]}}</td>
+        {% endfor %}
+
+        <!-- Delete Button-->
+        <!-- Update Button-->
+        <td><a href="update_plant/{{plant.plant_id}}">Update</a></td>
+        <td><a href="delete_plant/{{plant.plant_id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+   <!-- Form creation for add/update (see citation 3/4) --> 
+
+    <form action="/plants" id = addplant method = "POST"> 
+        <legend>Add Plant</legend>
+        <fieldset>
+            <label for="">Plant Name </label>
+            <input type="text" id="plantname" name="plantname">
+            <label for="">Date Planted </label>
+            <input type="date" id="dateplanted" name="dateplanted">
+            <label for="">Drought Resistant </label>
+            <select name="addroughtresistant" id="addroughtresistant">
+                <option value="adddr">Select</option>
+                <option value="dr">yes</option>
+                <option value="dr">no</option>
+            </select>
+
+ <!-- Citation # 6 - APPLYING QUERIES TO APP -->
+ <!-- Citation # 7 - Jinja 2 templates -->
+
+            <label for="">Garden Bed </label>
+            <select name="addplantgardenbed" id="addplantgardenbed">
+                <option >Select</option>
+                <option >No Garden Bed</option>
+                {% for gb in GardenBeds %}
+                    <option value="{{ gb.garden_bed_id }}">{{ gb.garden_bed_id }} - {{ gb.garden_bed_name }}</option>
+                {% endfor %}
+            </select>
+            <label for="">Species </label>
+
+ <!-- Citation # 6 - APPLYING QUERIES TO APP -->
+ <!-- Citation # 7 - Jinja 2 templates -->
+            <select name="addplantspecies" id="addplantspecies">
+                <option >Select</option>
+                {% for species in Species %}
+                    <option value="{{species.species_id }}">{{species.species_name}}</option>
+                {% endfor %}
+            </select>
+        </fieldset>
+        <button value="add_plant" name="add_plant">Submit</button>
+    </form>
+
+<!-- Form creation for add/update (see citation 3/4) --> 
+
+    <form action="/update_plant/" name = updateplant method="POST"> 
+        <legend>Update Plant</legend>
+        <fieldset>
+            <label for="">Plant ID</label>
+            <select name="updateplanttid" id="">
+                <option value="">Select</option>
+
+<!-- Citation # 7 - Jinja 2 templates -->
+
+            </select>
+
+            <label for="">Plant Name </label>
+            <input type="text">
+            <label for="">Date Planted </label>
+            <input type="text">
+            <label for="">Drought Resistant </label>
+            <select name="updatedroughtresistant" id="">
+                <option value="updatedr">Select</option>
+                <option value="dr">Yes</option>
+                <option value="dr">No</option>
+            </select>
+
+            <label for="">Garden Bed </label>
+            <select name="updateplantgardenbed" id="">
+                <option value="updatepgb">No Garden Bed</option>
+                {% for gb in GardenBeds %}
+
+<!-- Citation # 7 - Jinja 2 templates -->
+
+                {% endfor %}
+            </select>
+            <label for="">Species </label>
+            <select name="updateplantspecies" id="">
+                <option value="updateps">Select</option>
+                {% for species in Species %}
+                {% endfor %}
+            </select>
+            <button value= "update_plant" name="update_plant">Submit</button>
+        </fieldset>
+    </form>
+</body>
+</html>

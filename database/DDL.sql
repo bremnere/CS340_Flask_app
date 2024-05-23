@@ -1,3 +1,21 @@
+/* 
+1      # Citation for the general code was initially adapted from exporting SQL file from PHP after inputting data into sql Workbench:
+2      # Date: 05/02/2024
+3      # Adapted from PHP/sql Workbench: 
+4      # Source URL: https://www.phpmyadmin.net/downloads/
+4      # Source URL:  https://dev.mysql.com/downloads/workbench/
+
+1      # Citation for general cleaning up/organizing of code adapted from Activity 1 - Creating a Customer Object Table (Adding/ Creating Tables and Insertion of Data to table):
+2      # Date: 05/02/2024
+3      # Adapted from Activity 1 - Creating a Customer Object Table: :
+4      # Source URL: https://canvas.oregonstate.edu/courses/1958399/pages/activity-1-creating-a-customer-object-table?module_item_id=24181817
+
+1      # Citation for cascade/delete information:
+2      # Date: 05/02/2024
+3      # Adapted from Exploration: - MySQL Casade:
+4      # Source URL: https://canvas.oregonstate.edu/courses/1958399/pages/exploration-mysql-cascade?module_item_id=24181838
+*/
+
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
@@ -43,7 +61,7 @@ CREATE OR REPLACE TABLE `Plants` (
     FOREIGN KEY (`garden_bed_id`) REFERENCES `GardenBeds`(`garden_bed_id`)
     ON DELETE CASCADE,
     FOREIGN KEY (`species_id`) REFERENCES `Species`(`species_id`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
 );
 
 -- Create Harvests Table
@@ -55,7 +73,7 @@ CREATE OR REPLACE TABLE `Harvests` (
     `harvest_quantity` decimal(6,2) NOT NULL,
     PRIMARY KEY (`harvest_id`),
     FOREIGN KEY (`plant_id`) REFERENCES `Plants`(`plant_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
 );
 
 -- Intersection table for GardenBeds and Amendments
@@ -69,7 +87,7 @@ CREATE OR REPLACE TABLE `GardenBedAmendments` (
     FOREIGN KEY (`garden_bed_id`) REFERENCES `GardenBeds`(`garden_bed_id`)
     ON DELETE CASCADE,
     FOREIGN KEY (`amendment_id`) REFERENCES `Amendments` (`amendment_id`)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
 );
 
 -- Insert data into Species table
